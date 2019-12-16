@@ -33,7 +33,7 @@
 				</header>
 				<form name ='frm' method = 'post' action = "buypop.jsp" onsubmit="return popup();">
 				<div class="logo" style="display:inline; float:left; width:100%; height: auto; text-align: left">
-					<div style="background-color: #f0f5f0; border-radius: 10px; height: 400px; padding: 25px 20px 20px 35px">
+					<div style="background-color: #f0f5f0; border-radius: 10px; height: 320px; padding: 25px 20px 20px 35px">
 						<h4><strong>&nbsp;&nbsp;&nbsp;Selected Car</strong></h4>
 						<% 
 							String serverIP = (String)session.getAttribute("serverIP");

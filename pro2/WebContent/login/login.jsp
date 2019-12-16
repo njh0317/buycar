@@ -20,9 +20,14 @@
 				<div class="inner">
 					<a href="../main.jsp" class="logo">Trade your <strong>Used-Car!</strong></a>
 					<nav id="nav">
+					<%if(!loginManager.isLogin(session.getId()))
+					{%>
 						<a href="../main.jsp">Home</a>
 						<a href="login.jsp">Sign in</a>
 						<a href="sign_up.jsp">Sign up</a>
+						<% }else {%>
+						<a href="../main.jsp">Home</a>
+						<%}%>
 					</nav>
 					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 				</div>

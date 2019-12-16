@@ -244,7 +244,7 @@
 					<div class="flex flex-2">
 						<article>
 							<div class="image round">
-								<img src="images/pic01.jpg" alt="Pic 01" />
+								<img src="images/pic01.jpg" alt="Pic 01" style = "width : 200px; height:200px"/>
 							</div>
 							<header>
 								<h4><%out.print(choosemake[0]); %><br /> <%out.print(choosemodel[0]); %>   <%out.print(choosedmodel[0]); %></h4>
@@ -265,7 +265,7 @@
 						</article>
 						<article>
 							<div class="image round">
-								<img src="images/pic02.jpg" alt="Pic 02" />
+								<img src="images/pic02.jpg" alt="Pic 02" style = "width : 200px; height : 200px"/>
 							</div>
 							<header>
 								<h4><%out.print(choosemake[1]); %><br /> <%out.print(choosemodel[1]); %>   <%out.print(choosedmodel[1]); %></h4>

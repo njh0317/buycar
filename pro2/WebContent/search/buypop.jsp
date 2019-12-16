@@ -28,10 +28,10 @@
 		    
 		    <%   
 	        
-		        }else{
+		        }else if (check == 2){
 		    %>
 		        <script>
-		            alert("구매실패 ");
+		            alert("이미 구매된 차량입니다.");
 		            history.go(-2);
 		        </script>
 		    <%

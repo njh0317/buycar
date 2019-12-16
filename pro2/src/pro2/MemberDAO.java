@@ -13,13 +13,11 @@ import java.util.Calendar;
 public class MemberDAO 
 {
 	public static final String URL = "jdbc:oracle:thin:@localhost:1521:xe"; // Oracle
-    // Address
 	public static final String USER_NAME = "project"; // Oracle user ID
 	public static final String USER_PASSWD = "comp322";
 
     private static MemberDAO instance;
-    
-    // �떛湲��넠 �뙣�꽩
+
     private MemberDAO(){}
     public static MemberDAO getInstance(){
         if(instance==null)
@@ -34,10 +32,10 @@ public class MemberDAO
         PreparedStatement pstmt = null;
         
         try {
-            // 而ㅻ꽖�뀡�쓣 媛��졇�삩�떎.
+   
 
             conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-            //conn.setAutoCommit(false);
+   
 
             StringBuffer sql = new StringBuffer();
             sql.append("insert into JSP_MEMBER values");
@@ -54,9 +52,9 @@ public class MemberDAO
             pstmt.setString(7, member.getPhone());
             pstmt.setString(8, member.getAddress());
             
-            // 荑쇰━ �떎�뻾
+       
             pstmt.executeUpdate();
-            // �셿猷뚯떆 而ㅻ컠
+        
             conn.commit(); 
             
         }catch (Exception sqle) {
@@ -69,22 +67,21 @@ public class MemberDAO
                 throw new RuntimeException(e.getMessage());
             }
         }// end try~catch 
-    } // end insertMember()
+    } 
     
     
-    // 濡쒓렇�씤�떆 �븘�씠�뵒, 鍮꾨�踰덊샇 泥댄겕 硫붿꽌�뱶
-    // �븘�씠�뵒, 鍮꾨�踰덊샇瑜� �씤�옄濡� 諛쏅뒗�떎.
+
     public int loginCheck(String id, String pw) 
     {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
  
-        String dbPW = ""; // db�뿉�꽌 爰쇰궦 鍮꾨�踰덊샇瑜� �떞�쓣 蹂��닔
+        String dbPW = "";
         int x = -1;
  
         try {
-            // 荑쇰━ - 癒쇱� �엯�젰�맂 �븘�씠�뵒濡� DB�뿉�꽌 鍮꾨�踰덊샇瑜� 議고쉶�븳�떎.
+  
             StringBuffer query = new StringBuffer();
             query.append("SELECT Password FROM ACCOUNT WHERE ID = ?");
  
@@ -852,10 +849,13 @@ public class MemberDAO
 			        PreparedStatement pstmt = null;
 			        PreparedStatement pstmt2 = null;
 			        Statement pstmt3 = null;
-			        String SQL;
+			        PreparedStatement pstmt4 = null;
+			        String SQL,TRANS;
+			        
 			        ResultSet rs = null;
 			        Statement stmt = null;
 			        Calendar cal = Calendar.getInstance();
+			        TRANS = "LOCK TABLE BUY IN EXCLUSIVE MODE";
 			        int x = 0;
 			        try {
 			            Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -867,40 +867,64 @@ public class MemberDAO
 			
 			         try {
 			            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-			            //conn.setAutoCommit(false);
+			            conn.setAutoCommit(false);
 			         } catch (SQLException ex) {
 			            System.err.println("Cannot get a connection : " + ex.getMessage());
 			            System.exit(1);
 			         }
-			 
-			        try {
-			        	
-			            pstmt3 = conn.createStatement();
+			        try 
+			        {	
+			            
 			            StringBuffer query = new StringBuffer();
 			            StringBuffer query2 = new StringBuffer();
+			            StringBuffer query3 = new StringBuffer();
 			            StringBuffer sb = new StringBuffer();
-			       	 
 			            
 			            stmt = conn.createStatement();
 			            int onum = 0;
 				          while(true) {
-				             // 二쇰Ц踰덊샇媛� �씠誘� �엳�뒗吏� 寃��궗
+		
 				             onum = (int)((Math.random()*10000 + 1) + 100000);
 				             SQL = "SELECT ORDER_NUMBER FROM ORDERED WHERE ORDER_NUMBER = " + Integer.toString(onum);
 				             
 							rs = stmt.executeQuery(SQL);
 				             if(rs.next()){
-				             } else{
+				             } 
+				             else{
+				            	 stmt.close(); stmt = null;
+				         
 				               break;
 				             }
 				          }
+				          pstmt3 = conn.createStatement();
+				          //ResultSet rs4 = pstmt3.executeQuery(TRANS);
+				          
+				         
+				        query3.append("SELECT * FROM BUY WHERE CAR_NUM = ?");
+				        pstmt4 = conn.prepareStatement(query3.toString());
+				        pstmt4.setString(1, carid);
+				        ResultSet rs3 = pstmt4.executeQuery();
+				        
+				        if(rs3.next())
+				        {
+				        	try{
+				                if ( pstmt4 != null ){ pstmt4.close(); pstmt4=null; }
+				                
+				            }catch(Exception e){
+				                throw new RuntimeException(e.getMessage());
+				            }
+				        	return 2;
+				        }
+				        
 			            query.append("INSERT INTO BUY VALUES(?,?,?)");
 			            pstmt = conn.prepareStatement(query.toString());
 			            pstmt.setInt(1, onum);
 			            pstmt.setString(2, id);
 			            pstmt.setString(3, carid);
 			            int cnt = pstmt.executeUpdate();
+			            Thread.sleep(3000);
 			            conn.commit(); 
+			            
 			            try{
 			                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
 			                
@@ -911,7 +935,6 @@ public class MemberDAO
 			            if(cnt>0)
 			            {
 			            	
-			            	System.out.println("援щℓ �셿猷�");
 			            	query2.append("UPDATE ACCOUNT SET Order_count = Order_count + 1 WHERE ID = ?");
 			            	pstmt2=conn.prepareStatement(query2.toString());
 			            	pstmt2.setString(1, id);
@@ -926,14 +949,14 @@ public class MemberDAO
 			            	if(cnt>0)
 			            	{
 			            		String year = Integer.toString(cal.get(Calendar.YEAR));
-			  	              String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
-			  	              String date = Integer.toString(cal.get(Calendar.DATE));
-			  	            sb.append("INSERT INTO ORDERED VALUES ("+onum+", TO_DATE('"+year+"-"+month+"-"+date+"', 'yyyy-mm-dd')) ");
-			  	            String SQL3 = sb.toString();
-				            System.out.println(SQL3);
+			  	              	String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
+			  	              	String date = Integer.toString(cal.get(Calendar.DATE));
+			  	              	sb.append("INSERT INTO ORDERED VALUES ("+onum+", TO_DATE('"+year+"-"+month+"-"+date+"', 'yyyy-mm-dd')) ");
+			  	              	String SQL3 = sb.toString();
+			  	              	System.out.println(SQL3);
 				 
-				            pstmt3.executeUpdate(SQL3);
-				            conn.commit();
+			  	              	pstmt3.executeUpdate(SQL3);
+			  	              	conn.commit();
 			  	              
 			            	}
 			            }
@@ -941,8 +964,8 @@ public class MemberDAO
 			           
 			        } catch (Exception sqle) {
 			            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
-			            return -1;
-			            //throw new RuntimeException(sqle.getMessage());
+			            
+			            throw new RuntimeException(sqle.getMessage());
 			           
 			        } finally {
 			            try{

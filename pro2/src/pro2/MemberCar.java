@@ -13,14 +13,14 @@ import java.util.Date;
 
 public class MemberCar 
 {
-	public static final String URL = "jdbc:oracle:thin:@localhost:1521:xe"; // Oracle
+	public static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl"; // Oracle
     // Address
-	public static final String USER_NAME = "project"; // Oracle user ID
+	public static final String USER_NAME = "teamp"; // Oracle user ID
 	public static final String USER_PASSWD = "comp322";
 
     private static MemberCar instance;
     
-    // 싱글톤 패턴
+    // �떛湲��넠 �뙣�꽩
     private MemberCar(){}
     public static MemberCar getInstance(){
         if(instance==null)
@@ -35,7 +35,7 @@ public class MemberCar
         PreparedStatement pstmt = null;
         
         try {
-            // 커넥션을 가져온다.
+            // 而ㅻ꽖�뀡�쓣 媛��졇�삩�떎.
 
             conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
             conn.setAutoCommit(false);
@@ -55,9 +55,9 @@ public class MemberCar
             pstmt.setString(7, member.getPhone());
             pstmt.setString(8, member.getAddress());
             
-            // 쿼리 실행
+            // 荑쇰━ �떎�뻾
             pstmt.executeUpdate();
-            // 완료시 커밋
+            // �셿猷뚯떆 而ㅻ컠
             conn.commit(); 
             
         }catch (Exception sqle) {
@@ -141,7 +141,7 @@ public class MemberCar
 	              conn.commit();
 	              return 1;
 	        } catch (Exception sqle) {
-	            conn.rollback(); // 오류시 롤백
+	            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 	            return -1;
 	            
 	        } finally {
@@ -333,11 +333,11 @@ public class MemberCar
 		            	
 					int res = stmt.executeUpdate(SQL);
 		                if (res == 1)
-		                   System.out.println("\n정보수정 완료");
+		                   System.out.println("\n�젙蹂댁닔�젙 �셿猷�");
 		                conn.commit();
 		                return 1;
 		            }catch (Exception sqle) {
-			            conn.rollback(); // 오류시 롤백
+			            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 			            return -1;
 			            
 			        } finally {

@@ -32,7 +32,7 @@
 		    %>
 		        <script>
 		            alert("구매실패 ");
-		            history.go(-1);
+		            history.go(-2);
 		        </script>
 		    <%
 		        } 

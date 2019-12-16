@@ -190,6 +190,11 @@
 			rs = pstmt.executeQuery();
 			while(rs.next())
 			{
+				if(insertnum==1 && num[0].equals(rs.getString(4)))
+				{
+					
+					continue;
+				}
 				choosemake[insertnum]=rs.getString(1);
 				choosemodel[insertnum] = rs.getString(2);
 		 		choosedmodel[insertnum] = rs.getString(3);

@@ -917,11 +917,13 @@ public class MemberDAO
 			  	              
 			            	}
 			            }
-			            x=1; 
+			            return 1; 
 			           
 			        } catch (Exception sqle) {
 			            conn.rollback(); // 오류시 롤백
-			            throw new RuntimeException(sqle.getMessage());
+			            return -1;
+			            //throw new RuntimeException(sqle.getMessage());
+			           
 			        } finally {
 			            try{
 			                if ( pstmt3 != null ){ pstmt3.close(); pstmt3=null; }
@@ -930,7 +932,7 @@ public class MemberDAO
 			                throw new RuntimeException(e.getMessage());
 			            }
 			        }
-					return x;
+					
 			    } // end updateMembe
 
 

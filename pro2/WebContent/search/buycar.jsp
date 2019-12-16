@@ -15,7 +15,7 @@
 			<header id="header">
 				<div class="inner">
 				
-					<a href="main.html" class="logo">Trade your <strong>Used-Car!</strong></a>
+					<a href="../main.jsp" class="logo">Trade your <strong>Used-Car!</strong></a>
 					<nav id="nav">
 						<a href="../main.jsp">Home</a>
 						<a href="../login/login.jsp">Sign in</a>

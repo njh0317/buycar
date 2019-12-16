@@ -867,7 +867,7 @@ public class MemberDAO
 			
 			         try {
 			            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-			            conn.setAutoCommit(false);
+			            //conn.setAutoCommit(false);
 			         } catch (SQLException ex) {
 			            System.err.println("Cannot get a connection : " + ex.getMessage());
 			            System.exit(1);
@@ -897,7 +897,7 @@ public class MemberDAO
 				             }
 				          }
 				          pstmt3 = conn.createStatement();
-				          //ResultSet rs4 = pstmt3.executeQuery(TRANS);
+				          ResultSet rs4 = pstmt3.executeQuery(TRANS);
 				          
 				         
 				        query3.append("SELECT * FROM BUY WHERE CAR_NUM = ?");
@@ -922,7 +922,7 @@ public class MemberDAO
 			            pstmt.setString(2, id);
 			            pstmt.setString(3, carid);
 			            int cnt = pstmt.executeUpdate();
-			            Thread.sleep(3000);
+			        
 			            conn.commit(); 
 			            
 			            try{

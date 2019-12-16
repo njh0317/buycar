@@ -34,7 +34,15 @@
 	    
 	    <%    session.setAttribute("pass",pw);
          // 비밀번호가 틀릴경우 - 삭제가 안되었을 경우
-	        }else{
+	        } else if (check == 2){
+	      	 %>
+	 	        <script>
+	 	            alert("변경실패. 매니저 계정으로 로그인 후 탈퇴하세요.");
+	 	            history.go(-1);
+	 	        </script>
+	 	    <%
+	        }
+        	else{
 	    %>
 	        <script>
 	            alert("변경실패 ");

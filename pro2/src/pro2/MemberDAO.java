@@ -19,7 +19,7 @@ public class MemberDAO
 
     private static MemberDAO instance;
     
-    // 싱글톤 패턴
+    // �떛湲��넠 �뙣�꽩
     private MemberDAO(){}
     public static MemberDAO getInstance(){
         if(instance==null)
@@ -34,7 +34,7 @@ public class MemberDAO
         PreparedStatement pstmt = null;
         
         try {
-            // 커넥션을 가져온다.
+            // 而ㅻ꽖�뀡�쓣 媛��졇�삩�떎.
 
             conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
             //conn.setAutoCommit(false);
@@ -54,9 +54,9 @@ public class MemberDAO
             pstmt.setString(7, member.getPhone());
             pstmt.setString(8, member.getAddress());
             
-            // 쿼리 실행
+            // 荑쇰━ �떎�뻾
             pstmt.executeUpdate();
-            // 완료시 커밋
+            // �셿猷뚯떆 而ㅻ컠
             conn.commit(); 
             
         }catch (Exception sqle) {
@@ -72,19 +72,19 @@ public class MemberDAO
     } // end insertMember()
     
     
-    // 로그인시 아이디, 비밀번호 체크 메서드
-    // 아이디, 비밀번호를 인자로 받는다.
+    // 濡쒓렇�씤�떆 �븘�씠�뵒, 鍮꾨�踰덊샇 泥댄겕 硫붿꽌�뱶
+    // �븘�씠�뵒, 鍮꾨�踰덊샇瑜� �씤�옄濡� 諛쏅뒗�떎.
     public int loginCheck(String id, String pw) 
     {
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
  
-        String dbPW = ""; // db에서 꺼낸 비밀번호를 담을 변수
+        String dbPW = ""; // db�뿉�꽌 爰쇰궦 鍮꾨�踰덊샇瑜� �떞�쓣 蹂��닔
         int x = -1;
  
         try {
-            // 쿼리 - 먼저 입력된 아이디로 DB에서 비밀번호를 조회한다.
+            // 荑쇰━ - 癒쇱� �엯�젰�맂 �븘�씠�뵒濡� DB�뿉�꽌 鍮꾨�踰덊샇瑜� 議고쉶�븳�떎.
             StringBuffer query = new StringBuffer();
             query.append("SELECT Password FROM ACCOUNT WHERE ID = ?");
  
@@ -108,17 +108,17 @@ public class MemberDAO
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
  
-            if (rs.next()) // 입려된 아이디에 해당하는 비번 있을경우
+            if (rs.next()) // �엯�젮�맂 �븘�씠�뵒�뿉 �빐�떦�븯�뒗 鍮꾨쾲 �엳�쓣寃쎌슦
             {
-                dbPW = rs.getString("password"); // 비번을 변수에 넣는다.
+                dbPW = rs.getString("password"); // 鍮꾨쾲�쓣 蹂��닔�뿉 �꽔�뒗�떎.
  
                 if (dbPW.equals(pw)) 
-                    x = 1; // 넘겨받은 비번과 꺼내온 배번 비교. 같으면 인증성공
+                    x = 1; // �꽆寃⑤컺�� 鍮꾨쾲怨� 爰쇰궡�삩 諛곕쾲 鍮꾧탳. 媛숈쑝硫� �씤利앹꽦怨�
                 else                  
-                    x = 0; // DB의 비밀번호와 입력받은 비밀번호 다름, 인증실패
+                    x = 0; // DB�쓽 鍮꾨�踰덊샇�� �엯�젰諛쏆� 鍮꾨�踰덊샇 �떎由�, �씤利앹떎�뙣
                 
             } else {
-                x = -1; // 해당 아이디가 없을 경우
+                x = -1; // �빐�떦 �븘�씠�뵒媛� �뾾�쓣 寃쎌슦
             }
  
             return x;
@@ -173,7 +173,7 @@ public class MemberDAO
             x=1; 
            
         } catch (Exception sqle) {
-            conn.rollback(); // 오류시 롤백
+            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
             throw new RuntimeException(sqle.getMessage());
         } finally {
             try{
@@ -201,7 +201,7 @@ public class MemberDAO
          }
  
         try {
-            // 쿼리
+            // 荑쇰━
             StringBuffer query = new StringBuffer();
             query.append("SELECT * FROM ACCOUNT WHERE ID=?");
  
@@ -209,7 +209,7 @@ public class MemberDAO
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
  
-            if (rs.next()) // 회원정보를 DTO에 담는다.
+            if (rs.next()) // �쉶�썝�젙蹂대�� DTO�뿉 �떞�뒗�떎.
             {
 
                 member = new MemberBean();
@@ -228,7 +228,7 @@ public class MemberDAO
         } catch (Exception sqle) {
             throw new RuntimeException(sqle.getMessage());
         } finally {
-            // Connection, PreparedStatement를 닫는다.
+            // Connection, PreparedStatement瑜� �떕�뒗�떎.
             try{
                 if ( pstmt != null ){ pstmt.close(); pstmt=null; }
                 if ( conn != null ){ conn.close(); conn=null;    }
@@ -329,13 +329,13 @@ public class MemberDAO
 	            
 	            pstmt.executeUpdate(SQL);
 	            //System.out.println(res+" row updated");
-	            System.out.println("정보수정 완료 ");
+	            System.out.println("�젙蹂댁닔�젙 �셿猷� ");
 	            conn.commit();
 	            num=0;
 	            x=1; 
 	           
 	        } catch (Exception sqle) {
-	            conn.rollback(); // 오류시 롤백
+	            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 	            throw new RuntimeException(sqle.getMessage());
 	        } finally {
 	            try{
@@ -351,6 +351,9 @@ public class MemberDAO
 	        
 	        Connection conn = null;
 	        PreparedStatement pstmt = null;
+	        Statement stmt = null;
+	        ResultSet rs;
+	        
 	        int x = 0;
 	        try {
 	            Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -362,7 +365,9 @@ public class MemberDAO
 	
 	         try {
 	            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-	            //conn.setAutoCommit(false);
+
+		        conn.setAutoCommit(false);
+
 	         } catch (SQLException ex) {
 	            System.err.println("Cannot get a connection : " + ex.getMessage());
 	            System.exit(1);
@@ -371,19 +376,34 @@ public class MemberDAO
 	        try {
 	        	
 	            StringBuffer query = new StringBuffer();
-	 
-	       
-	            query.append("DELETE FROM ACCOUNT WHERE ID = ?");
-	
-	
-	            pstmt = conn.prepareStatement(query.toString());
-	            pstmt.setString(1, id);
-	            pstmt.executeUpdate();
-	            conn.commit(); 
-	            x=1; 
-	           
+	            
+	            String SQL = "SELECT * FROM manage WHERE mng_id = \'"+ id + "\'";
+	            stmt = conn.createStatement();
+	            rs = stmt.executeQuery(SQL);
+	            int cnt = 0;
+	            if(rs.next()) {									// id is manager
+		            	System.out.println("I am manager");
+		            	cnt++;
+	            } else {										// id is not manager
+	            	// ResultSet값이 null인 경우 처리하고 싶은 코드를 작성하면 된다.
+	            	System.out.println("I am not manager");
+		            query.append("DELETE FROM ACCOUNT WHERE ID = ?");
+		
+		            pstmt = conn.prepareStatement(query.toString());
+		            pstmt.setString(1, id);
+		            pstmt.executeUpdate();
+		            conn.commit(); 
+		            x=1; 
+	            }
+	            
+	            if (cnt == 1)
+	            	x = 2;
+	            else if (cnt > 1)
+	            	x = 3;
+	            System.out.printf("%d %s\n", cnt, SQL);
+		        conn.setAutoCommit(true);
 	        } catch (Exception sqle) {
-	            conn.rollback(); // 오류시 롤백
+	            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 	            throw new RuntimeException(sqle.getMessage());
 	        } finally {
 	            try{
@@ -429,7 +449,7 @@ public class MemberDAO
 	            pstmt.setString(1, id);
 	            rs = pstmt.executeQuery();
 	            
-	            if (rs.next()) // 입려된 아이디에 해당하는 비번 있을경우
+	            if (rs.next()) // �엯�젮�맂 �븘�씠�뵒�뿉 �빐�떦�븯�뒗 鍮꾨쾲 �엳�쓣寃쎌슦
 	            {
 	                return 1;
 	                
@@ -439,7 +459,7 @@ public class MemberDAO
 	            
 	           
 	        } catch (Exception sqle) {
-	            conn.rollback(); // 오류시 롤백
+	            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 	            throw new RuntimeException(sqle.getMessage());
 	        } finally {
 	            try{
@@ -486,7 +506,7 @@ public class MemberDAO
 			            pstmt.setInt(1, id);
 			            rs = pstmt.executeQuery();
 			            
-			            if (rs.next()) // 입려된 아이디에 해당하는 비번 있을경우
+			            if (rs.next()) // �엯�젮�맂 �븘�씠�뵒�뿉 �빐�떦�븯�뒗 鍮꾨쾲 �엳�쓣寃쎌슦
 			            {
 			                return 1;
 			                
@@ -496,7 +516,7 @@ public class MemberDAO
 			            
 			           
 			        } catch (Exception sqle) {
-			            conn.rollback(); // 오류시 롤백
+			            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 			            throw new RuntimeException(sqle.getMessage());
 			        } finally {
 			            try{
@@ -579,13 +599,13 @@ public class MemberDAO
 		            String SQL = sb.toString();
 		            pstmt.executeUpdate(SQL);
 		            //System.out.println(res+" row updated");
-		            System.out.println("가입 완료 ");
+		            System.out.println("媛��엯 �셿猷� ");
 		            conn.commit();
 		          
 		            x=1; 
 		           
 		        } catch (Exception sqle) {
-		            conn.rollback(); // 오류시 롤백
+		            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 		            throw new RuntimeException(sqle.getMessage());
 		        } finally {
 		            try{
@@ -646,20 +666,20 @@ public class MemberDAO
 	                   rs = pstmt.executeQuery();
 	                   if (rs.next()) {
 	                      if (rs.getString(1).equals(pass)) {
-	                         return 1; // 로그인 성공
+	                         return 1; // 濡쒓렇�씤 �꽦怨�
 	                      } else
-	                         return 0; // 아이디 비밀번호 불일치
+	                         return 0; // �븘�씠�뵒 鍮꾨�踰덊샇 遺덉씪移�
 	                   }
-	                   return 2; // 아이디가 없음
+	                   return 2; // �븘�씠�뵒媛� �뾾�쓬
 	                } else
-	                   return 3; // manage 계정 일치하지 않음
+	                   return 3; // manage 怨꾩젙 �씪移섑븯吏� �븡�쓬
 	             }
-	             return -1; // 매니저 아이디가 없음
+	             return -1; // 留ㅻ땲�� �븘�씠�뵒媛� �뾾�쓬
 	 
 	            
 	           
 	        } catch (Exception sqle) {
-	            conn.rollback(); // 오류시 롤백
+	            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 	            throw new RuntimeException(sqle.getMessage());
 	        } finally {
 	            try{
@@ -707,7 +727,7 @@ public class MemberDAO
                    int num = rs2.getInt(1);
                    if(num == 1)
                    {
-                      System.out.println("현재 남은 관리자 계정이 1개 이므로 탈퇴 불가");
+                      System.out.println("�쁽�옱 �궓�� 愿�由ъ옄 怨꾩젙�씠 1媛� �씠誘�濡� �깉�눜 遺덇�");
                 
                       return 2;
                    }
@@ -720,7 +740,7 @@ public class MemberDAO
 	            x=1; 
 	           
 	        } catch (Exception sqle) {
-	            conn.rollback(); // 오류시 롤백
+	            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 	            throw new RuntimeException(sqle.getMessage());
 	        } finally {
 	            try{
@@ -814,7 +834,7 @@ public class MemberDAO
 		            x=1; 
 		           
 		        } catch (Exception sqle) {
-		            conn.rollback(); // 오류시 롤백
+		            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 		            throw new RuntimeException(sqle.getMessage());
 		        } finally {
 		            try{
@@ -864,7 +884,7 @@ public class MemberDAO
 			            stmt = conn.createStatement();
 			            int onum = 0;
 				          while(true) {
-				             // 주문번호가 이미 있는지 검사
+				             // 二쇰Ц踰덊샇媛� �씠誘� �엳�뒗吏� 寃��궗
 				             onum = (int)((Math.random()*10000 + 1) + 100000);
 				             SQL = "SELECT ORDER_NUMBER FROM ORDERED WHERE ORDER_NUMBER = " + Integer.toString(onum);
 				             
@@ -891,7 +911,7 @@ public class MemberDAO
 			            if(cnt>0)
 			            {
 			            	
-			            	System.out.println("구매 완료");
+			            	System.out.println("援щℓ �셿猷�");
 			            	query2.append("UPDATE ACCOUNT SET Order_count = Order_count + 1 WHERE ID = ?");
 			            	pstmt2=conn.prepareStatement(query2.toString());
 			            	pstmt2.setString(1, id);
@@ -920,7 +940,7 @@ public class MemberDAO
 			            return 1; 
 			           
 			        } catch (Exception sqle) {
-			            conn.rollback(); // 오류시 롤백
+			            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
 			            return -1;
 			            //throw new RuntimeException(sqle.getMessage());
 			           

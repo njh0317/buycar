@@ -14,7 +14,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
 </head>
-<body>
+<body class ="subpage">
+		<header id="header">
+				<div class="inner">
+					<a href="../main.jsp" class="logo">Trade your <strong>Used-Car!</strong></a>
+					<nav id="nav">
+						<a href="../main.jsp">Home</a>
+					</nav>
+					<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+				</div>
+			</header>
 
 		<section id="three" class="wrapper" style="padding: 30px">
 				<div class="inner">

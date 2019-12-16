@@ -292,9 +292,10 @@
 									<br><br>
 									
 							</div>
-							<div style="width:30%;  padding: 10px 20px; margin:auto" >
-									
-										<input type = "submit" value = "등록">
+							
+							<div style="width:130px;  padding: 10px 20px; margin:auto" >
+									<br>
+										<input type = "submit" value = "수정">
 									
 							</div>
 				

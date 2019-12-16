@@ -167,7 +167,7 @@
 				choosemodel[insertnum] = rs.getString(2);
 		 		choosedmodel[insertnum] = rs.getString(3);
 		 		num[insertnum] = rs.getString(4); 
-		 		System.out.println(num[insertnum]);
+		 		//System.out.println(num[insertnum]);
 		 		insertnum++;
 		 		if(insertnum==2)
 		 		{
@@ -199,7 +199,7 @@
 				choosemodel[insertnum] = rs.getString(2);
 		 		choosedmodel[insertnum] = rs.getString(3);
 		 		num[insertnum] = rs.getString(4); 
-		 		System.out.println(num[insertnum]);
+		 		//System.out.println(num[insertnum]);
 		 		insertnum++;
 		 		if(insertnum==2)
 		 		{
@@ -226,7 +226,7 @@
 		 		choosemodel[insertnum] = modelname[cnt2];
 		 		choosedmodel[insertnum] = dmodelname[cnt2];
 				num[insertnum] = rs.getString(1); 
-				System.out.println(num[insertnum]);
+				//System.out.println(num[insertnum]);
 				insertnum++;
 			}else
 			{

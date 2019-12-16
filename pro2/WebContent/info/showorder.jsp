@@ -43,14 +43,14 @@
 									if(xform.check.checked==true)
 									{
 										url = "CheckForm.jsp?check="+xform.check.value;
-										open(url, "confirm","toolbar=no, location = no, status=no, menubar=no, scrollbars=no, resizable=no, width=300, height = 200");
+										open(url, "confirm","toolbar=no, location = no, status=no, menubar=no, scrollbars=no, resizable=no, width=500, height = 600");
 									}
 								for(var i=0; i<xform.check.length;i++){
 								
 									if(xform.check[i].checked == true){
 								   	
 								   		url = "CheckForm.jsp?check="+xform.check[i].value;
-										open(url, "confirm","toolbar=no, location = no, status=no, menubar=no, scrollbars=no, resizable=no, width=300, height = 200");
+										open(url, "confirm","toolbar=no, location = no, status=no, menubar=no, scrollbars=no, resizable=no, width=500, height = 600");
 										
 									}
 								}	

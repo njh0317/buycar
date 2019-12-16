@@ -37,7 +37,7 @@ public class MemberDAO
             // 커넥션을 가져온다.
 
             conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-            conn.setAutoCommit(false);
+            //conn.setAutoCommit(false);
 
             StringBuffer sql = new StringBuffer();
             sql.append("insert into JSP_MEMBER values");
@@ -98,7 +98,7 @@ public class MemberDAO
 
              try {
                 conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-                conn.setAutoCommit(false);
+                //conn.setAutoCommit(false);
              } catch (SQLException ex) {
                 System.err.println("Cannot get a connection : " + ex.getMessage());
                 System.exit(1);
@@ -151,7 +151,7 @@ public class MemberDAO
 
          try {
             conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-            conn.setAutoCommit(false);
+            //conn.setAutoCommit(false);
          } catch (SQLException ex) {
             System.err.println("Cannot get a connection : " + ex.getMessage());
             System.exit(1);
@@ -266,7 +266,7 @@ public class MemberDAO
 	
 	         try {
 	            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-	            conn.setAutoCommit(false);
+	            //conn.setAutoCommit(false);
 	            pstmt = conn.createStatement();
 	         } catch (SQLException ex) {
 	            System.err.println("Cannot get a connection : " + ex.getMessage());
@@ -362,7 +362,7 @@ public class MemberDAO
 	
 	         try {
 	            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-	            conn.setAutoCommit(false);
+	            //conn.setAutoCommit(false);
 	         } catch (SQLException ex) {
 	            System.err.println("Cannot get a connection : " + ex.getMessage());
 	            System.exit(1);
@@ -411,7 +411,7 @@ public class MemberDAO
 	
 	         try {
 	            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-	            conn.setAutoCommit(false);
+	            //conn.setAutoCommit(false);
 	         } catch (SQLException ex) {
 	            System.err.println("Cannot get a connection : " + ex.getMessage());
 	            System.exit(1);
@@ -468,7 +468,7 @@ public class MemberDAO
 			
 			         try {
 			            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-			            conn.setAutoCommit(false);
+			            //conn.setAutoCommit(false);
 			         } catch (SQLException ex) {
 			            System.err.println("Cannot get a connection : " + ex.getMessage());
 			            System.exit(1);
@@ -536,7 +536,7 @@ public class MemberDAO
 		
 		         try {
 		            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-		            conn.setAutoCommit(false);
+		            //conn.setAutoCommit(false);
 		            pstmt = conn.createStatement();
 		         } catch (SQLException ex) {
 		            System.err.println("Cannot get a connection : " + ex.getMessage());
@@ -616,7 +616,7 @@ public class MemberDAO
 	
 	         try {
 	            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-	            conn.setAutoCommit(false);
+	            //conn.setAutoCommit(false);
 	         } catch (SQLException ex) {
 	            System.err.println("Cannot get a connection : " + ex.getMessage());
 	            System.exit(1);
@@ -686,7 +686,7 @@ public class MemberDAO
 	
 	         try {
 	            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-	            conn.setAutoCommit(false);
+	            //conn.setAutoCommit(false);
 	         } catch (SQLException ex) {
 	            System.err.println("Cannot get a connection : " + ex.getMessage());
 	            System.exit(1);
@@ -760,7 +760,7 @@ public class MemberDAO
 		
 		         try {
 		            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-		            conn.setAutoCommit(false);
+		            //conn.setAutoCommit(false);
 		            pstmt = conn.createStatement();
 		         } catch (SQLException ex) {
 		            System.err.println("Cannot get a connection : " + ex.getMessage());
@@ -847,7 +847,7 @@ public class MemberDAO
 			
 			         try {
 			            conn = DriverManager.getConnection(URL, USER_NAME, USER_PASSWD);
-			            conn.setAutoCommit(false);
+			            //conn.setAutoCommit(false);
 			         } catch (SQLException ex) {
 			            System.err.println("Cannot get a connection : " + ex.getMessage());
 			            System.exit(1);

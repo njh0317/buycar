@@ -87,7 +87,7 @@
 					<form name=writeform method = post action = "carmanage/addcar.jsp" onsubmit="return isValidDate(this);">
 					
 						<hr><br>
-						<div style="background-color: #f0f5f0; border-radius: 10px; width: 600px; height: 320px; padding: 10px 20px">
+						<div style="position: relative; left:250px; background-color: #f0f5f0; border-radius: 10px; width: 600px; height: 530px; padding: 10px 20px">
 									<div style = "width : 48%; float:left">차량번호&nbsp;
 										
 										<input type="text" name="carnum" id = "carnum" required>
@@ -177,7 +177,8 @@
 									
 									<div style="width:48%; float:right">제조사 
 								 	<select id="selectmake" name="make" onchange="makeChange()">
-										<option selected>Hyundai</option>
+								 		<option value="" selected disabled hidden></option>
+										<option>Hyundai</option>
 										<option>Kia</option>
 										<option>Chevrolet(GM DaeWoo)</option>
 										<option>Renault Samsung</option>
@@ -195,15 +196,15 @@
 								 	<select id="selectdmodel" name="dmodel">
 										
 									</select></div><br>
-									<br>
-									<div style="width:20%; float:right; padding: 10px 20pxs">
-										<br>
 									
+									<div style="width:20%; float:right; padding: 10px 20pxs">
+										<br><br><br>
+									<input type = "submit" value = "등록">
 									</div>
 							</div><br>
 						
 				
-						<input type = "submit" value = "등록">
+						
 					</form>
 						
 					</div>

@@ -63,11 +63,11 @@
 						<h2><strong>Search Results</strong></h2>
 						<p>This is result of your search</p>
 						<% 
-						   String serverIP = "localhost";
-						   String strSID = "xe";
-						   String portNum = "1521";
-						   String user = "project";
-						   String pass = "comp322";
+							String serverIP = (String)session.getAttribute("serverIP");
+						   String strSID = (String)session.getAttribute("strSID");
+						   String portNum = (String)session.getAttribute("portNum");
+						   String user = (String)session.getAttribute("user");
+						   String pass = (String)session.getAttribute("passnum");
 						   String url = "jdbc:oracle:thin:@"+serverIP+":"+portNum+":"+strSID;
 						   System.out.println(url);
 						   Connection conn = null;
@@ -192,10 +192,18 @@
 								String maker = request.getParameter("make");
 								String model = request.getParameter("model");
 								String dmodel = request.getParameter("dmodel");
+								/*
 								application.setAttribute("MAKE", maker);
 								application.setAttribute("MODEL", model);
 								application.setAttribute("DMODEL", dmodel);
-	
+	*/							
+								String idmake = loginManager.getUserID(session.getId())+"make";
+								String idmodel = loginManager.getUserID(session.getId())+"model";
+								String iddmodel = loginManager.getUserID(session.getId())+"dmodel";
+								session.setAttribute(idmake,maker);
+								session.setAttribute(idmodel,model);
+								session.setAttribute(iddmodel,dmodel);
+								
 								String query = "SELECT * FROM VEHICLE WHERE Car_Number NOT IN(SELECT Car_Num FROM BUY,VEHICLE WHERE Car_Num = Car_Number) " +
 										"AND Car_Make = \'"+ maker + "\' AND Car_model = \'" + model + "\' AND Car_Detailed = \'" + dmodel + "\' AND visible=\'true\'";
 								pstmt = conn.prepareStatement(query);
@@ -223,7 +231,13 @@
 								   out.println("<td>"+rs.getString(11)+"</td>");
 								   out.println("</tr>"); 
 								}
-								out.println("</table>");							
+								out.println("</table>");
+								try{
+									if(pstmt!=null)pstmt.close();
+									if(conn!=null)conn.close();
+								}catch(Exception ex){
+									System.out.println("目池记 秦力 Exception惯积 : "+ex.getMessage());
+								}
 							%>
 							<%if((!loginManager.isLogin(session.getId()))||(session.getAttribute("mngnum")!=null))
 								{%>

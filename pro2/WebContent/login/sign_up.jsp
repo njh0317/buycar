@@ -175,14 +175,14 @@
 					
 						
 					            String blank = "    ";
-					            String textare7 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"id\" size=\"5\" style=\"width:70%; float:left; height:70%; border: 0; \" onkeydown=\"inputIdChk();\"> ";
-					            String textare8 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"pass\" size=\"5\" style=\"width:70%; height:70%; border: 0; \">";
-					            String textare = "<td style=\"border: 0px;\"><input type=\"text\" name=\"myname\" size=\"5\" style=\"width:70%; height:70%; border: 0; \"> ";
-					            String textare2 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"Phonenum\" size=\"5\" style=\"width:70%; height:70%; border: 0;\"> ";
-					            String textare3 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"Addr\" size=\"5\" style=\"width:70%; height:70%; border: 0;\">";
-					            String textare4 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"text\" size=\"5\" style=\"width:70%; height:70%; border: 0;\">";
-					            String textare5 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"Occupation\" size=\"5\" style=\"width:50%; height:70%; border: 0;\" >";
-					            String textare6 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"Date\" size=\"5\" style=\"width:70%; height:70%; border: 0;\">";
+					            String textare7 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"id\" size=\"5\" style=\"width:70%; float:left; height:25px; border: 0; \" onkeydown=\"inputIdChk();\"> ";
+					            String textare8 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"pass\" size=\"5\" style=\"width:70%; height:100%; border: 0; \">";
+					            String textare = "<td style=\"border: 0px;\"><input type=\"text\" name=\"myname\" size=\"5\" style=\"width:70%; height:100%; border: 0; \"> ";
+					            String textare2 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"Phonenum\" size=\"5\" style=\"width:70%; height:100%; border: 0;\"> ";
+					            String textare3 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"Addr\" size=\"5\" style=\"width:70%; height:100%; border: 0;\">";
+					            String textare4 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"text\" size=\"5\" style=\"width:70%; height:100%; border: 0;\">";
+					            String textare5 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"Occupation\" size=\"5\" style=\"width:50%; height:100%; border: 0;\" >";
+					            String textare6 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"Date\" size=\"5\" style=\"width:70%; height:100%; border: 0;\">";
 					            String text = "<td style=\"text-align:left\"><input type=\"radio\" name=\"gender\" value=\"0\" ondblclick=\"this.checked=false\">남자 &emsp; &ensp; <input type=\"radio\" name=\"gender\" value=\"1\" ondblclick=\"this.checked=false\">여자</td>";
 					            
 					            

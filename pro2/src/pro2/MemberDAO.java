@@ -860,7 +860,7 @@ public class MemberDAO
 			            StringBuffer query2 = new StringBuffer();
 			            StringBuffer sb = new StringBuffer();
 			       	 
-			           
+			            
 			            stmt = conn.createStatement();
 			            int onum = 0;
 				          while(true) {

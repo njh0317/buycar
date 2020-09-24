@@ -175,7 +175,7 @@
 					
 						
 					            String blank = "    ";
-					            String textare7 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"id\" size=\"5\" style=\"width:70%; float:left; height:25px; border: 0; \" onkeydown=\"inputIdChk();\"> ";
+					            String textare7 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"id\" size=\"5\" style=\"width:70%; float:left; height:100%; border: 0; \" onkeydown=\"inputIdChk();\"> ";
 					            String textare8 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"pass\" size=\"5\" style=\"width:70%; height:100%; border: 0; \">";
 					            String textare = "<td style=\"border: 0px;\"><input type=\"text\" name=\"myname\" size=\"5\" style=\"width:70%; height:100%; border: 0; \"> ";
 					            String textare2 = "<td style=\"border: 0px;\"><input type=\"text\" name=\"Phonenum\" size=\"5\" style=\"width:70%; height:100%; border: 0;\"> ";

@@ -855,7 +855,7 @@ public class MemberDAO
 			        ResultSet rs = null;
 			        Statement stmt = null;
 			        Calendar cal = Calendar.getInstance();
-			        TRANS = "LOCK TABLE BUY IN EXCLUSIVE MODE";
+			        
 			        int x = 0;
 			        try {
 			            Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -881,6 +881,7 @@ public class MemberDAO
 			            StringBuffer sb = new StringBuffer();
 			            
 			            stmt = conn.createStatement();
+			            
 			            int onum = 0;
 				          while(true) {
 		
@@ -896,11 +897,18 @@ public class MemberDAO
 				               break;
 				             }
 				          }
-				          pstmt3 = conn.createStatement();
-				          ResultSet rs4 = pstmt3.executeQuery(TRANS);
 				          
-				         
+				        
+				        pstmt3 = conn.createStatement();
+				       
+				        
+				        TRANS = "LOCK TABLE BUY IN EXCLUSIVE MODE";
+				        
+				        ResultSet rs4 = pstmt3.executeQuery(TRANS);
+				        
+				        
 				        query3.append("SELECT * FROM BUY WHERE CAR_NUM = ?");
+				        
 				        pstmt4 = conn.prepareStatement(query3.toString());
 				        pstmt4.setString(1, carid);
 				        ResultSet rs3 = pstmt4.executeQuery();
@@ -916,6 +924,7 @@ public class MemberDAO
 				        	return 2;
 				        }
 				        
+				        
 			            query.append("INSERT INTO BUY VALUES(?,?,?)");
 			            pstmt = conn.prepareStatement(query.toString());
 			            pstmt.setInt(1, onum);
@@ -923,7 +932,8 @@ public class MemberDAO
 			            pstmt.setString(3, carid);
 			            int cnt = pstmt.executeUpdate();
 			        
-			            conn.commit(); 
+			            conn.commit();
+			            
 			            
 			            try{
 			                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
@@ -949,7 +959,7 @@ public class MemberDAO
 			            	if(cnt>0)
 			            	{
 			            		String year = Integer.toString(cal.get(Calendar.YEAR));
-			  	              	String month = Integer.toString(cal.get(Calendar.MONTH) + 1);
+			  	              	String month = Integer.toString(cal.get(Calendar.MONTH)+1);
 			  	              	String date = Integer.toString(cal.get(Calendar.DATE));
 			  	              	sb.append("INSERT INTO ORDERED VALUES ("+onum+", TO_DATE('"+year+"-"+month+"-"+date+"', 'yyyy-mm-dd')) ");
 			  	              	String SQL3 = sb.toString();
@@ -963,9 +973,9 @@ public class MemberDAO
 			            return 1; 
 			           
 			        } catch (Exception sqle) {
-			            conn.rollback(); // �삤瑜섏떆 濡ㅻ갚
+			            conn.rollback();
+			            return 2;
 			            
-			            throw new RuntimeException(sqle.getMessage());
 			           
 			        } finally {
 			            try{

@@ -52,23 +52,23 @@
 					
 						<%
 							
-						 	String SQL = "select to_char(model_year, 'YY'), sum(price) from vehicle where car_number in (select car_num from buy) group by to_char(model_year, 'YY') order by to_char(model_year, 'YY')";
+						 	String SQL = "select to_char(order_date, 'YY'),to_char(order_date, 'MM'), sum(price) from ordered, buy, vehicle where car_number in (select car_num from buy) and car_num = car_number and order_number = order_num group by to_char(order_date, 'YY'),to_char(order_date, 'MM') order by to_char(order_date, 'YY'),to_char(order_date, 'MM')";
 					      
 					      	Statement stmt;
 					      	ResultSet rs = null;
 					      	stmt = conn.createStatement();
 					       
-					        out.print("년도별 매출액 : ");
+					        out.print("월별 매출액 : ");
 					        
 					        rs = stmt.executeQuery(SQL);
 							out.println("<table border=\"1\" style=\"width: 100%\" id=\"result\">");
 							
-							out.println("<th>Year</th><th>매출액</th>");
+							out.println("<th>Year</th><th>Month</th><th>매출액</th>");
 						
 							while(rs.next()){
 							   out.println("<tr>");
-							   out.println("<td>"+rs.getString(1)+"년도</td>");
-							   out.println("<td>"+rs.getInt(2)+"원</td>");
+							   out.println("<td>"+rs.getString(1)+"년</td><td>"+rs.getString(2)+"월</td>");
+							   out.println("<td>"+rs.getInt(3)+"원</td>");
 				
 							  
 							   out.println("</tr>");      

@@ -14,11 +14,13 @@
 + 나지혜
   + [sign-in/sign-up] menu
   + [member/manager profile] menu
+  + Database construction
   
   
 + 장지현
   + webpage design
   + [search/buy vehicle] menu
+  + Database construction
   
   
 ## Description

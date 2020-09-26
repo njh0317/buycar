@@ -104,8 +104,8 @@
   + html
 + DBMS
   + Oracle
-+IDE
-  +Eclipse IDE
++ IDE
+  + Eclipse IDE
   
   
 ### 자세한 내용은 사용자메뉴얼.pdf 참조
